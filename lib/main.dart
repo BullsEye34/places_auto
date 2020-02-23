@@ -76,18 +76,28 @@ class _AutoCompleteState extends State<AutoComplete> {
                         children: <Widget>[
                           Padding(
                             padding: const EdgeInsets.all(15.0),
-                            child: Text(
-                              item.autocompleteterm,
-                              style: TextStyle(fontSize: 20.0),
+                            child: Container(
+                              width: MediaQuery.of(context).size.width * 0.5,
+                              child: Text(
+                                item.autocompleteterm,
+                                style: TextStyle(fontSize: 20.0),
+                              ),
                             ),
                           ),
                           Padding(
                             padding: EdgeInsets.all(20.0),
                           ),
+                          /**
+                       * Consider setting mainAxisSize to MainAxisSize.min and using FlexFit.loose fits for the flexible children (using Flexible rather than Expanded). This will allow the flexible children to size themselves to less than the infinite remaining space they would otherwise be forced to take, and then will cause the RenderFlex to shrink-wrap the children rather than expanding to fit the maximum constraints provided by the parent.
+                       * 
+                       */
                           Padding(
                             padding: const EdgeInsets.all(20.0),
-                            child: Text(
-                              item.country,
+                            child: Container(
+                              width: MediaQuery.of(context).size.width * 0.2,
+                              child: Text(
+                                item.country,
+                              ),
                             ),
                           )
                         ],
