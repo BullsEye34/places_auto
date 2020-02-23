@@ -61,7 +61,7 @@ class _AutoCompleteState extends State<AutoComplete> {
                         contentPadding:
                             EdgeInsets.fromLTRB(10.0, 30.0, 10.0, 20.0),
                         filled: true,
-                        hintText: 'Search Player Name',
+                        hintText: 'Search City Name',
                         hintStyle: TextStyle(color: Colors.black)),
                     itemSubmitted: (item) {
                       setState(() => searchTextField.textField.controller.text =
