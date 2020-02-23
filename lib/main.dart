@@ -42,63 +42,70 @@ class _AutoCompleteState extends State<AutoComplete> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        resizeToAvoidBottomPadding: false,
-        appBar: AppBar(
-          title: Text('Auto Complete List Demo'),
+      resizeToAvoidBottomPadding: false,
+      appBar: AppBar(
+        title: Text('Auto Complete List Demo'),
+      ),
+      body: new Center(
+        child: new Column(
+          children: <Widget>[
+            new Column(
+              children: <Widget>[
+                searchTextField = AutoCompleteTextField<Players>(
+                    style: new TextStyle(color: Colors.black, fontSize: 20.0),
+                    decoration: new InputDecoration(
+                        suffixIcon: Container(
+                          width: 85.0,
+                          height: 60.0,
+                        ),
+                        contentPadding:
+                            EdgeInsets.fromLTRB(10.0, 30.0, 10.0, 20.0),
+                        filled: true,
+                        hintText: 'Search Player Name',
+                        hintStyle: TextStyle(color: Colors.black)),
+                    itemSubmitted: (item) {
+                      setState(() => searchTextField.textField.controller.text =
+                          item.autocompleteterm);
+                    },
+                    clearOnSubmit: false,
+                    key: key,
+                    suggestions: PlayersViewModel.players,
+                    itemBuilder: (context, item) {
+                      return Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: <Widget>[
+                          Padding(
+                            padding: const EdgeInsets.all(15.0),
+                            child: Text(
+                              item.autocompleteterm,
+                              style: TextStyle(fontSize: 20.0),
+                            ),
+                          ),
+                          Padding(
+                            padding: EdgeInsets.all(20.0),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.all(20.0),
+                            child: Text(
+                              item.country,
+                            ),
+                          )
+                        ],
+                      );
+                    },
+                    itemSorter: (a, b) {
+                      return a.autocompleteterm.compareTo(b.autocompleteterm);
+                    },
+                    itemFilter: (item, query) {
+                      return item.autocompleteterm
+                          .toLowerCase()
+                          .startsWith(query.toLowerCase());
+                    }),
+              ],
+            ),
+          ],
         ),
-        body: new Center(
-            child: new Column(children: <Widget>[
-          new Column(children: <Widget>[
-            searchTextField = AutoCompleteTextField<Players>(
-                style: new TextStyle(color: Colors.black, fontSize: 20.0),
-                decoration: new InputDecoration(
-                    suffixIcon: Container(
-                      width: 85.0,
-                      height: 60.0,
-                    ),
-                    contentPadding: EdgeInsets.fromLTRB(10.0, 30.0, 10.0, 20.0),
-                    filled: true,
-                    hintText: 'Search Player Name',
-                    hintStyle: TextStyle(color: Colors.black)),
-                itemSubmitted: (item) {
-                  setState(() => searchTextField.textField.controller.text =
-                      item.autocompleteterm);
-                },
-                clearOnSubmit: false,
-                key: key,
-                suggestions: PlayersViewModel.players,
-                itemBuilder: (context, item) {
-                  return Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: <Widget>[
-                      Padding(
-                        padding: const EdgeInsets.all(15.0),
-                        child: Text(
-                          item.autocompleteterm,
-                          style: TextStyle(fontSize: 20.0),
-                        ),
-                      ),
-                      Padding(
-                        padding: EdgeInsets.all(20.0),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(20.0),
-                        child: Text(
-                          item.country,
-                        ),
-                      )
-                    ],
-                  );
-                },
-                itemSorter: (a, b) {
-                  return a.autocompleteterm.compareTo(b.autocompleteterm);
-                },
-                itemFilter: (item, query) {
-                  return item.autocompleteterm
-                      .toLowerCase()
-                      .startsWith(query.toLowerCase());
-                }),
-          ]),
-        ])));
+      ),
+    );
   }
 }
