@@ -481,7 +481,7 @@ class _AutoCompleteState extends State<AutoComplete> {
             child: new Column(children: <Widget>[
           new Column(children: <Widget>[
             searchTextField = AutoCompleteTextField<Players>(
-                style: new TextStyle(color: Colors.black, fontSize: 16.0),
+                style: new TextStyle(color: Colors.black, fontSize: 20.0),
                 decoration: new InputDecoration(
                     suffixIcon: Container(
                       width: 85.0,
@@ -502,15 +502,21 @@ class _AutoCompleteState extends State<AutoComplete> {
                   return Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: <Widget>[
-                      Text(
-                        item.autocompleteterm,
-                        style: TextStyle(fontSize: 16.0),
+                      Padding(
+                        padding: const EdgeInsets.all(15.0),
+                        child: Text(
+                          item.autocompleteterm,
+                          style: TextStyle(fontSize: 20.0),
+                        ),
                       ),
                       Padding(
-                        padding: EdgeInsets.all(15.0),
+                        padding: EdgeInsets.all(20.0),
                       ),
-                      Text(
-                        item.country,
+                      Padding(
+                        padding: const EdgeInsets.all(20.0),
+                        child: Text(
+                          item.country,
+                        ),
                       )
                     ],
                   );

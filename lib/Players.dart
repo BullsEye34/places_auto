@@ -31,7 +31,6 @@ class PlayersViewModel {
       for (int i = 0; i < categoryJson.length; i++) {
         players.add(new Players.fromJson(categoryJson[i]));
       }
-      print(players);
     } catch (e) {
       print(e);
     }
